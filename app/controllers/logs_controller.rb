@@ -111,7 +111,7 @@ class LogsController < ApplicationController
           # people cannot seem to spell the most delicious fruit correctly
           word = 'avocados' if word == 'avacados' or word == 'avocadoes' or word == 'avocado'
           words[word] = 0 if words[word].nil?
-          words[wotd] += 1
+          words[word] += 1
         }
       }
       render :text => words.collect{ |k, v| (v >= 10) ? "#{k}:#{v}" : nil }.compact.join(',')
