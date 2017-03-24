@@ -109,7 +109,7 @@ class LogsController < ApplicationController
           word = word.strip.downcase.tr(',', '')
           next if word =~ /(nothing|no |none)/ or word =~ /etc/ or word =~ /n\/a/ or word =~ /misc/
           # people cannot seem to spell the most delicious fruit correctly
-          word = 'avocados' if word == 'avacados' or word == 'avocadoes' or word == 'avocado'
+          word = 'avocados' if %w(avacados avocadoes avocado).include?(word)
           words[word] = 0 if words[word].nil?
           words[word] += 1
         }
