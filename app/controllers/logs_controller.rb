@@ -24,7 +24,7 @@ class LogsController < ApplicationController
       n = params[:n].present? ? params[:n].to_i : 0
       d = Time.zone.today+n
     end
-    index(Log.where("region_id IN (#{current_volunteer.region_ids.join(',')}) AND \"when\" = '#{d}'"), "Shifts on #{d.strftime('%A, %B %-d')}")
+    index(Log.where("region_id IN (#{current_volunteer.region_ids.join(',')}) AND \"when\" = '#{date}'"), "Shifts on #{date.strftime('%A, %B %-d')}")
   end
 
   def last_ten
@@ -282,7 +282,7 @@ class LogsController < ApplicationController
 
   # can be given a single id or a list of ids
   def leave
-    logs = 
+    logs =
     unless params[:ids].present?
       [Log.find(params[:id])]
     else
