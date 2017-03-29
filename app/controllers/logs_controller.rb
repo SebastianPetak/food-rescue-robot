@@ -282,11 +282,12 @@ class LogsController < ApplicationController
 
   # can be given a single id or a list of ids
   def leave
-    logs = unless params[:ids].present?
-          [Log.find(params[:id])]
-        else
-          params[:ids].collect{ |id| Log.find(id) }
-        end
+    logs = 
+    unless params[:ids].present?
+      [Log.find(params[:id])]
+    else
+      params[:ids].collect{ |id| Log.find(id) }
+    end
 
     logs.each { |log| authorize! :leave, log }
 
