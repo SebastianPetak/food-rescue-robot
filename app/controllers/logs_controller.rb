@@ -19,10 +19,10 @@ class LogsController < ApplicationController
 
   def by_day
     if params[:date].present?
-      d = Date.civil(*params[:date].sort.map(&:last).map(&:to_i))
+      date = Date.civil(*params[:date].sort.map(&:last).map(&:to_i))
     else
-      n = params[:n].present? ? params[:n].to_i : 0
-      d = Time.zone.today+n
+      n = params[:n].present? ? params[:n].to_i : 0 
+      date = Time.zone.today+n
     end
     index(Log.where("region_id IN (#{current_volunteer.region_ids.join(',')}) AND \"when\" = '#{date}'"), "Shifts on #{date.strftime('%A, %B %-d')}")
   end
