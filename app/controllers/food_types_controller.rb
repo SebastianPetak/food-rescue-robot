@@ -14,6 +14,7 @@ class FoodTypesController < ApplicationController
     authorize! :destroy, food_type
     food_type.active = false
     food_type.save
+    redirect_to(request.referrer)
   end
 
   def new
